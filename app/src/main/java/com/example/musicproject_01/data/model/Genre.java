@@ -1,41 +1,41 @@
 package com.example.musicproject_01.data.model;
 
 public class Genre {
-    private String mName;
-    private int mGenreString;
-    private int mGenreImage;
+    private String mTitle;
+    private int mImage;
+    private String mYear;
 
     public Genre() {
 
     }
 
-    public Genre(String mName, int mGenreString, int mGenreImage) {
-        this.mName = mName;
-        this.mGenreString = mGenreString;
-        this.mGenreImage = mGenreImage;
+    public Genre(String Title, int Image, String Year) {
+        this.mTitle = Title;
+        this.mImage = Image;
+        this.mYear = Year;
     }
 
-    public String getmName() {
-        return mName;
+    public String getTitle() {
+        return mTitle;
     }
 
-    public void setmName(String mName) {
-        this.mName = mName;
+    public void setTitle(String Title) {
+        this.mTitle = Title;
     }
 
-    public int getmGenreString() {
-        return mGenreString;
+    public int getImage() {
+        return mImage;
     }
 
-    public void setmGenreString(int mGenreString) {
-        this.mGenreString = mGenreString;
+    public void setImage(int Image) {
+        this.mImage = Image;
     }
 
-    public int getmGenreImage() {
-        return mGenreImage;
+    public String getYear() {
+        return mYear;
     }
 
-    public void setmGenreImage(int mGenreImage) {
-        this.mGenreImage = mGenreImage;
+    public void setYear(String Year) {
+        this.mYear = Year;
     }
 }

@@ -61,12 +61,6 @@ public class FetchTrackFromUrl extends AsyncTask<String, Void, List<Track>> {
             JSONObject jsonObject = jsonArray.getJSONObject(i).getJSONObject(TrackEntity.TRACK);
 
             String artworkUrl = jsonObject.optString(TrackEntity.ARTWORK_URL);
-            if (!artworkUrl.isEmpty()) {
-                artworkUrl = artworkUrl.replace(TrackEntity.LARGE_IMAGE_SIZE, TrackEntity.BETTER_IMAGE_SIZE);
-            } else {
-                artworkUrl = jsonObject.getJSONObject(TrackEntity.USER).optString(TrackEntity.AVATAR_URL);
-            }
-            String description = jsonObject.optString(TrackEntity.DESCRIPTION);
             String downloadUrl = jsonObject.optString(TrackEntity.DOWNLOAD_URL);
             String genre = jsonObject.optString(TrackEntity.GENRE);
             String title = jsonObject.optString(TrackEntity.TITLE);
@@ -76,18 +70,17 @@ public class FetchTrackFromUrl extends AsyncTask<String, Void, List<Track>> {
             int id = jsonObject.getInt(TrackEntity.ID);
             boolean downloadable = jsonObject.getBoolean(TrackEntity.DOWNLOADABLE);
 
-            Track track = new Track(
-                    artworkUrl,
-                    description,
-                    title,
-                    genre,
-                    duration,
-                    uri,
-                    id,
-                    downloadUrl,
-                    downloadCount,
-                    downloadable
-            );
+            Track track = new Track.Builder()
+                    .withArtworkUrl(artworkUrl)
+                    .withTitle(title)
+                    .withGenre(genre)
+                    .withDuration(duration)
+                    .withUri(uri)
+                    .withId(id)
+                    .withDownloadUrl(downloadUrl)
+                    .withDownloadCount(downloadCount)
+                    .withIsDownloadable(downloadable)
+                    .build();
 
             tracks.add(track);
         }

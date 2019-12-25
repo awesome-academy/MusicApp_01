@@ -2,7 +2,6 @@ package com.example.musicproject_01.data.model;
 
 public class Track {
     private String mArtworkUrl;
-    private String mDescription;
     private String mTitle;
     private String mGenre;
     private int mDuration;
@@ -12,100 +11,150 @@ public class Track {
     private int mDownloadCount;
     private boolean mIsDownloadable;
 
-    public Track() {
+    public Track(Builder builder) {
+
+        mArtworkUrl = builder.mArtworkUrl;
+        mTitle = builder.mTitle;
+        mGenre = builder.mGenre;
+        mDuration = builder.mDuration;
+        mUri = builder.mUri;
+        mId = builder.mId;
+        mDownloadUrl = builder.mDownloadUrl;
+        mDownloadCount = builder.mDownloadCount;
+        mIsDownloadable = builder.mIsDownloadable;
 
     }
 
-    public Track(String mArtworkUrl, String mDescription, String mTitle, String mGenre, int mDuration, String mUri, int mId, String mDownloadUrl, int mDownloadCount, boolean mIsDownloadable) {
-        this.mArtworkUrl = mArtworkUrl;
-        this.mDescription = mDescription;
-        this.mTitle = mTitle;
-        this.mGenre = mGenre;
-        this.mDuration = mDuration;
-        this.mUri = mUri;
-        this.mId = mId;
-        this.mDownloadUrl = mDownloadUrl;
-        this.mDownloadCount = mDownloadCount;
-        this.mIsDownloadable = mIsDownloadable;
+    public static class Builder {
+        private String mArtworkUrl;
+        private String mTitle;
+        private String mGenre;
+        private int mDuration;
+        private String mUri;
+        private int mId;
+        private String mDownloadUrl;
+        private int mDownloadCount;
+        private boolean mIsDownloadable;
+
+        public Builder withArtworkUrl(String artworkUrl) {
+            this.mArtworkUrl = artworkUrl;
+            return this;
+        }
+
+        public Builder withTitle(String title) {
+            this.mTitle = title;
+            return this;
+        }
+
+        public Builder withGenre(String genre) {
+            this.mGenre = genre;
+            return this;
+        }
+
+        public Builder withDuration(int duration) {
+            this.mDuration = duration;
+            return this;
+        }
+
+        public Builder withUri(String uri) {
+            this.mUri = uri;
+            return this;
+        }
+
+        public Builder withId(int id) {
+            this.mId = id;
+            return this;
+        }
+
+        public Builder withDownloadUrl(String downloadUrl) {
+            this.mDownloadUrl = downloadUrl;
+            return this;
+        }
+
+        public Builder withDownloadCount(int downloadCount) {
+            this.mDownloadCount = downloadCount;
+            return this;
+        }
+
+        public Builder withIsDownloadable(boolean isDownloadable) {
+            this.mIsDownloadable = isDownloadable;
+            return this;
+        }
+
+        public Track build() {
+            return new Track(this);
+        }
     }
 
-    public String getmArtworkUrl() {
+    public String getArtworkUrl() {
         return mArtworkUrl;
     }
 
-    public void setmArtworkUrl(String mArtworkUrl) {
-        this.mArtworkUrl = mArtworkUrl;
+    public void setArtworkUrl(String artworkUrl) {
+        mArtworkUrl = artworkUrl;
     }
 
-    public String getmDescription() {
-        return mDescription;
-    }
-
-    public void setmDescription(String mDescription) {
-        this.mDescription = mDescription;
-    }
-
-    public String getmTitle() {
+    public String getTitle() {
         return mTitle;
     }
 
-    public void setmTitle(String mTitle) {
-        this.mTitle = mTitle;
+    public void setTitle(String title) {
+        mTitle = title;
     }
 
-    public String getmGenre() {
+    public String getGenre() {
         return mGenre;
     }
 
-    public void setmGenre(String mGenre) {
-        this.mGenre = mGenre;
+    public void setGenre(String genre) {
+        mGenre = genre;
     }
 
-    public int getmDuration() {
+    public int getDuration() {
         return mDuration;
     }
 
-    public void setmDuration(int mDuration) {
-        this.mDuration = mDuration;
+    public void setDuration(int duration) {
+        mDuration = duration;
     }
 
-    public String getmUri() {
+    public String getUri() {
         return mUri;
     }
 
-    public void setmUri(String mUri) {
-        this.mUri = mUri;
+    public void setUri(String uri) {
+        mUri = uri;
     }
 
-    public int getmId() {
+    public int getId() {
         return mId;
     }
 
-    public void setmId(int mId) {
-        this.mId = mId;
+    public void setId(int id) {
+        mId = id;
     }
 
-    public String getmDownloadUrl() {
+    public String getDownloadUrl() {
         return mDownloadUrl;
     }
 
-    public void setmDownloadUrl(String mDownloadUrl) {
-        this.mDownloadUrl = mDownloadUrl;
+    public void setDownloadUrl(String downloadUrl) {
+        mDownloadUrl = downloadUrl;
     }
 
-    public int getmDownloadCount() {
+    public int getDownloadCount() {
         return mDownloadCount;
     }
 
-    public void setmDownloadCount(int mDownloadCount) {
-        this.mDownloadCount = mDownloadCount;
+    public void setDownloadCount(int downloadCount) {
+        mDownloadCount = downloadCount;
     }
 
-    public boolean ismIsDownloadable() {
+    public boolean isDownloadable() {
         return mIsDownloadable;
     }
 
-    public void setmIsDownloadable(boolean mIsDownloadable) {
-        this.mIsDownloadable = mIsDownloadable;
+    public void setDownloadable(boolean downloadable) {
+        mIsDownloadable = downloadable;
     }
 }
