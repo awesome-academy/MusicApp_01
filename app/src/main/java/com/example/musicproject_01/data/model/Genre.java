@@ -9,33 +9,34 @@ public class Genre {
 
     }
 
-    public Genre(String Title, int Image, String Year) {
-        this.mTitle = Title;
-        this.mImage = Image;
-        this.mYear = Year;
+    public Genre(String title, int image, String year) {
+        mTitle = title;
+        mImage = image;
+        mYear = year;
     }
 
     public String getTitle() {
         return mTitle;
     }
 
-    public void setTitle(String Title) {
-        this.mTitle = Title;
+    public void setTitle(String title) {
+        mTitle = title;
     }
 
     public int getImage() {
         return mImage;
     }
 
-    public void setImage(int Image) {
-        this.mImage = Image;
+    public void setImage(int image) {
+        mImage = image;
     }
 
     public String getYear() {
         return mYear;
     }
 
-    public void setYear(String Year) {
-        this.mYear = Year;
+    public void setYear(String year) {
+        mYear = year;
     }
+
 }
