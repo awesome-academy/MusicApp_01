@@ -4,24 +4,28 @@ public class Track {
     private String mArtworkUrl;
     private String mTitle;
     private String mGenre;
-    private int mDuration;
+    private String mPermalinkUrl;
     private String mUri;
+    private String mStreamUrl;
     private int mId;
-    private String mDownloadUrl;
+    private int mDuration;
     private int mDownloadCount;
     private boolean mIsDownloadable;
+    private User mUser;
 
     public Track(Builder builder) {
 
         mArtworkUrl = builder.mArtworkUrl;
         mTitle = builder.mTitle;
         mGenre = builder.mGenre;
-        mDuration = builder.mDuration;
+        mPermalinkUrl = builder.mPermalinkUrl;
         mUri = builder.mUri;
+        mStreamUrl = builder.mStreamUrl;
         mId = builder.mId;
-        mDownloadUrl = builder.mDownloadUrl;
+        mDuration = builder.mDuration;
         mDownloadCount = builder.mDownloadCount;
         mIsDownloadable = builder.mIsDownloadable;
+        mUser = builder.mUser;
 
     }
 
@@ -29,12 +33,14 @@ public class Track {
         private String mArtworkUrl;
         private String mTitle;
         private String mGenre;
-        private int mDuration;
+        private String mPermalinkUrl;
         private String mUri;
+        private String mStreamUrl;
         private int mId;
-        private String mDownloadUrl;
+        private int mDuration;
         private int mDownloadCount;
         private boolean mIsDownloadable;
+        private User mUser;
 
         public Builder withArtworkUrl(String artworkUrl) {
             this.mArtworkUrl = artworkUrl;
@@ -51,13 +57,19 @@ public class Track {
             return this;
         }
 
-        public Builder withDuration(int duration) {
-            this.mDuration = duration;
+        public Builder withPermalinkUrl(String permalinkUrl) {
+            this.mPermalinkUrl = permalinkUrl;
             return this;
         }
 
+
         public Builder withUri(String uri) {
             this.mUri = uri;
+            return this;
+        }
+
+        public Builder withStreamUrl(String streamUrl) {
+            this.mStreamUrl = streamUrl;
             return this;
         }
 
@@ -66,8 +78,8 @@ public class Track {
             return this;
         }
 
-        public Builder withDownloadUrl(String downloadUrl) {
-            this.mDownloadUrl = downloadUrl;
+        public Builder withDuration(int duration) {
+            this.mDuration = duration;
             return this;
         }
 
@@ -78,6 +90,11 @@ public class Track {
 
         public Builder withIsDownloadable(boolean isDownloadable) {
             this.mIsDownloadable = isDownloadable;
+            return this;
+        }
+
+        public Builder withUser(User user) {
+            this.mUser = user;
             return this;
         }
 
@@ -110,12 +127,12 @@ public class Track {
         mGenre = genre;
     }
 
-    public int getDuration() {
-        return mDuration;
+    public String getPermalinkUrl() {
+        return mPermalinkUrl;
     }
 
-    public void setDuration(int duration) {
-        mDuration = duration;
+    public void setPermalinkUrl(String permalinkUrl) {
+        mPermalinkUrl = permalinkUrl;
     }
 
     public String getUri() {
@@ -126,6 +143,14 @@ public class Track {
         mUri = uri;
     }
 
+    public String getStreamUrl() {
+        return mStreamUrl;
+    }
+
+    public void setStreamUrl(String streamUrl) {
+        mStreamUrl = streamUrl;
+    }
+
     public int getId() {
         return mId;
     }
@@ -134,12 +159,12 @@ public class Track {
         mId = id;
     }
 
-    public String getDownloadUrl() {
-        return mDownloadUrl;
+    public int getDuration() {
+        return mDuration;
     }
 
-    public void setDownloadUrl(String downloadUrl) {
-        mDownloadUrl = downloadUrl;
+    public void setDuration(int duration) {
+        mDuration = duration;
     }
 
     public int getDownloadCount() {
@@ -157,4 +182,13 @@ public class Track {
     public void setDownloadable(boolean downloadable) {
         mIsDownloadable = downloadable;
     }
+
+    public User getUser() {
+        return mUser;
+    }
+
+    public void setUser(User user) {
+        mUser = user;
+    }
+
 }
