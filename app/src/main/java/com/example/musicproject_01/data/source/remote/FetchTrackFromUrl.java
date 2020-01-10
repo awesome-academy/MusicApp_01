@@ -4,7 +4,9 @@ import android.os.AsyncTask;
 
 import com.example.musicproject_01.constant.Constant;
 import com.example.musicproject_01.constant.TrackEntity;
+import com.example.musicproject_01.constant.UserEntity;
 import com.example.musicproject_01.data.model.Track;
+import com.example.musicproject_01.data.model.User;
 import com.example.musicproject_01.data.source.TrackDataSource;
 
 import org.json.JSONArray;
@@ -24,14 +26,14 @@ public class FetchTrackFromUrl extends AsyncTask<String, Void, List<Track>> {
     private TrackDataSource.OnFetchDataListener<Track> mListener;
     private Exception mException;
 
-    public FetchTrackFromUrl(TrackDataSource.OnFetchDataListener<Track> mListener) {
-        this.mListener = mListener;
+    public void setListener(TrackDataSource.OnFetchDataListener<Track> listener) {
+        mListener = listener;
     }
 
     @Override
     protected List<Track> doInBackground(String... strings) {
         String url = strings[0];
-        String data;
+        String data = null;
         try {
             data = getJsonStringFromUrl(url);
             return getTracksFromJson(data);
@@ -55,34 +57,44 @@ public class FetchTrackFromUrl extends AsyncTask<String, Void, List<Track>> {
 
     private List<Track> getTracksFromJson(String data) throws JSONException {
         List<Track> tracks = new ArrayList<>();
-        JSONObject object = new JSONObject(data);
-        JSONArray jsonArray = object.getJSONArray(TrackEntity.COLLECTION);
+        JSONArray jsonArray = new JSONArray(data);
         for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject jsonObject = jsonArray.getJSONObject(i).getJSONObject(TrackEntity.TRACK);
+            JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-            String artworkUrl = jsonObject.optString(TrackEntity.ARTWORK_URL);
-            String downloadUrl = jsonObject.optString(TrackEntity.DOWNLOAD_URL);
-            String genre = jsonObject.optString(TrackEntity.GENRE);
-            String title = jsonObject.optString(TrackEntity.TITLE);
-            String uri = jsonObject.optString(TrackEntity.URI);
-            int downloadCount = jsonObject.getInt(TrackEntity.DOWNLOAD_COUNT);
-            int duration = jsonObject.getInt(TrackEntity.DURATION);
+            String artworkUrl = jsonObject.getString(TrackEntity.ARTWORK_URL);
+            String title = jsonObject.getString(TrackEntity.TITLE);
+            String genre = jsonObject.getString(TrackEntity.GENRE);
+            String permalinkUrl = jsonObject.getString(TrackEntity.PERMALINK_URL);
+            String uri = jsonObject.getString(TrackEntity.URI);
+            String streamUrl = jsonObject.getString(TrackEntity.STREAM_URL);
             int id = jsonObject.getInt(TrackEntity.ID);
-            boolean downloadable = jsonObject.getBoolean(TrackEntity.DOWNLOADABLE);
+            int duration = jsonObject.getInt(TrackEntity.DURATION);
+            int downloadCount = jsonObject.getInt(TrackEntity.DOWNLOAD_COUNT);
+            boolean isDownloadable = jsonObject.getBoolean(TrackEntity.DOWNLOADABLE);
+
+            JSONObject objectUser = jsonArray.getJSONObject(i).getJSONObject(TrackEntity.USER);
+            String username = objectUser.getString(UserEntity.NAME);
+            String avatarUrl = objectUser.getString(UserEntity.AVATAR_URL);
+            String idUser = objectUser.getString(UserEntity.ID);
+
+            User user = new User(username, avatarUrl, idUser);
 
             Track track = new Track.Builder()
                     .withArtworkUrl(artworkUrl)
                     .withTitle(title)
                     .withGenre(genre)
-                    .withDuration(duration)
+                    .withPermalinkUrl(permalinkUrl)
                     .withUri(uri)
+                    .withStreamUrl(streamUrl)
                     .withId(id)
-                    .withDownloadUrl(downloadUrl)
+                    .withDuration(duration)
                     .withDownloadCount(downloadCount)
-                    .withIsDownloadable(downloadable)
+                    .withIsDownloadable(isDownloadable)
+                    .withUser(user)
                     .build();
 
             tracks.add(track);
+
         }
         return tracks;
     }
@@ -100,7 +112,7 @@ public class FetchTrackFromUrl extends AsyncTask<String, Void, List<Track>> {
         BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
 
         StringBuilder sb = new StringBuilder();
-        String line;
+        String line = "";
 
         while ((line = br.readLine()) != null) {
             sb.append(line).append(Constant.BREAK_LINE);
@@ -112,7 +124,5 @@ public class FetchTrackFromUrl extends AsyncTask<String, Void, List<Track>> {
         return sb.toString();
     }
 
-    public void setListener(TrackDataSource.OnFetchDataListener<Track> listener) {
-        mListener = listener;
-    }
 }
+

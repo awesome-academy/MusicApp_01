@@ -1,4 +1,4 @@
-package com.example.musicproject_01.ui.splash;
+package com.example.musicproject_01.screen.splash;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +7,8 @@ import android.os.Handler;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.musicproject_01.MainActivity;
 import com.example.musicproject_01.R;
+import com.example.musicproject_01.screen.main.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
 

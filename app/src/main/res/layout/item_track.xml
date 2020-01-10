@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/dp_108"
+    android:layout_height="@dimen/dp_150"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/image_track"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="@dimen/dp_100"
+        android:layout_marginStart="@dimen/dp_4"
+        android:layout_marginTop="@dimen/dp_4"
+        android:background="@drawable/track_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_title_track"
+        android:layout_width="@dimen/dp_88"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_4"
+        android:layout_marginTop="@dimen/dp_4"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="@string/title_track"
+        android:textColor="@color/color_white"
+        android:textSize="@dimen/sp_10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_track" />
+
+    <TextView
+        android:id="@+id/text_name_artist"
+        android:layout_width="@dimen/dp_88"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_4"
+        android:layout_marginTop="@dimen/dp_4"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="@string/title_artist"
+        android:textColor="@color/color_white"
+        android:textSize="@dimen/sp_10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_title_track" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

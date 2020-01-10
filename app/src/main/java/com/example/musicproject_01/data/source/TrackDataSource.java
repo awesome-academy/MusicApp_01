@@ -1,5 +1,7 @@
 package com.example.musicproject_01.data.source;
 
+import com.example.musicproject_01.data.model.Track;
+
 import java.util.List;
 
 public interface TrackDataSource {
@@ -10,4 +12,7 @@ public interface TrackDataSource {
         void onFetchDataFailure(Exception e);
     }
 
+    interface Local {
+        List<Track> getAllLocalTrack();
+    }
 }
