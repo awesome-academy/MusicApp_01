@@ -34,6 +34,7 @@ public class FetchPlaylistFromUrl extends AsyncTask<String, Void, List<Playlist>
 
     @Override
     protected List<Playlist> doInBackground(String... strings) {
+
         String url = strings[0];
         String data = null;
 
@@ -98,7 +99,7 @@ public class FetchPlaylistFromUrl extends AsyncTask<String, Void, List<Playlist>
         String nameUserPlaylist = objectUser.getString(UserEntity.NAME);
         String avatarUserPlaylist = objectUser.getString(UserEntity.AVATAR_URL);
 
-        User user = new User(idUserPlaylist, nameUserPlaylist, avatarUserPlaylist);
+        User user = new User(nameUserPlaylist, idUserPlaylist, avatarUserPlaylist);
 
         Playlist playlist = new Playlist.Builder()
                 .withDuration(duration)

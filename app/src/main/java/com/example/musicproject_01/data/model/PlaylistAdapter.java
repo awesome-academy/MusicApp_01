@@ -20,35 +20,37 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
-public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> {
+public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ViewHolder> {
 
-    private List<Track> mTrackList;
-    private OnItemClickListeners mOnItemClickListeners;
+    private List<Playlist> mPlaylistList;
+    private OnItemClickPlaylistListeners mOnItemClickPlaylistListeners;
     private String mURL;
 
-    public TrackAdapter(List<Track> trackList) {
-        mTrackList = trackList;
+    public PlaylistAdapter(List<Playlist> playlistList) {
+        mPlaylistList = playlistList;
     }
 
-    public void setOnItemClickListeners(OnItemClickListeners onItemClickListeners) {
-        mOnItemClickListeners = onItemClickListeners;
+    public void setOnItemClickPlaylistListeners(
+            OnItemClickPlaylistListeners onItemClickPlaylistListeners) {
+        mOnItemClickPlaylistListeners = onItemClickPlaylistListeners;
     }
 
     @NonNull
     @Override
-    public TrackAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PlaylistAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater
                 .from(parent.getContext())
-                .inflate(R.layout.item_track, parent, false);
+                .inflate(R.layout.item_playlist, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final TrackAdapter.ViewHolder holder, int position) {
-        Track track = mTrackList.get(position);
-        mURL = track.getArtworkUrl();
-        holder.mTextTitleTrack.setText(track.getTitle());
-        holder.mTextNameArtist.setText(track.getUser().getName());
+    public void onBindViewHolder(@NonNull final PlaylistAdapter.ViewHolder holder, int position) {
+        Playlist playlist = mPlaylistList.get(position);
+        mURL = playlist.getArtworkUrl();
+        holder.mTextTitlePlaylist.setText(playlist.getTitle());
+        holder.mTextArtistPlaylist.setText(playlist.getUser().getName());
+
         class ImageDownloadAsync extends AsyncTask<String, Void, Bitmap> {
 
             @Override
@@ -66,7 +68,7 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> 
                     InputStream inputStream = connection.getInputStream();
                     bitmap = BitmapFactory.decodeStream(inputStream);
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    e.getCause();
                 }
                 return bitmap;
             }
@@ -74,12 +76,11 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> 
             @Override
             protected void onProgressUpdate(Void... values) {
                 super.onProgressUpdate(values);
-
             }
 
             @Override
             protected void onPostExecute(Bitmap bitmap) {
-                holder.mImageTrack.setImageBitmap(bitmap);
+                holder.mImagePlaylist.setImageBitmap(bitmap);
             }
         }
         new ImageDownloadAsync().execute(mURL);
@@ -87,42 +88,44 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return mTrackList == null ? 0 : mTrackList.size();
+        return mPlaylistList == null ? 0 : mPlaylistList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private ImageView mImageTrack;
-        private TextView mTextTitleTrack;
-        private TextView mTextNameArtist;
+        private ImageView mImagePlaylist;
+        private TextView mTextTitlePlaylist;
+        private TextView mTextArtistPlaylist;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            mImageTrack = itemView.findViewById(R.id.image_track);
-            mTextTitleTrack = itemView.findViewById(R.id.text_title_track);
-            mTextNameArtist = itemView.findViewById(R.id.text_name_artist);
+            mImagePlaylist = itemView.findViewById(R.id.image_playlist);
+            mTextArtistPlaylist = itemView.findViewById(R.id.text_artist_playlist);
+            mTextTitlePlaylist = itemView.findViewById(R.id.text_title_playlist);
 
-            mImageTrack.setOnClickListener(this);
+            mImagePlaylist.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.image_track:
-                    mOnItemClickListeners.onItemClick(
-                            mTrackList.get(getAdapterPosition()),
-                            getAdapterPosition());
+                case R.id.image_playlist:
+                    mOnItemClickPlaylistListeners.onItemClick(
+                            mPlaylistList.get(getAdapterPosition())
+                            , getAdapterPosition());
             }
         }
     }
 
-    public void addTrack(List<Track> tracks) {
-        mTrackList = tracks;
+    public void addPlaylist(List<Playlist> playlistList) {
+        mPlaylistList = playlistList;
     }
 
-    public interface OnItemClickListeners {
-        void onItemClick(Track track, int position);
+    public interface OnItemClickPlaylistListeners {
+
+        void onItemClick(Playlist playlist, int position);
+
     }
 
 }
