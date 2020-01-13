@@ -3,7 +3,6 @@ package com.example.musicproject_01.screen.main.home;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.musicproject_01.R;
@@ -28,10 +27,13 @@ public class HomeFragment extends BaseFragment implements HomeContract.View,
         PlaylistAdapter.OnItemClickPlaylistListeners {
 
     private HomeContract.Presenter mHomePresenter;
+
     private RecyclerView mRecyclerRecentSong;
     private RecyclerView mRecyclerPlaylist;
+    
     private TrackAdapter mTrackAdapter;
     private PlaylistAdapter mPlaylistAdapter;
+
     private List<Track> mTrackListAdd;
     private List<Playlist> mPlaylistAdd;
 

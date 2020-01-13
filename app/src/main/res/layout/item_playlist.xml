@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="@dimen/dp_108"
-    android:layout_height="@dimen/dp_150">
+    android:layout_height="@dimen/dp_158">
 
     <ImageView
         android:id="@+id/image_playlist"
@@ -25,7 +25,7 @@
         android:singleLine="true"
         android:text="@string/title_playlist"
         android:textColor="@color/color_white"
-        android:textSize="@dimen/sp_10"
+        android:textSize="@dimen/sp_11"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_playlist" />
 
@@ -38,7 +38,7 @@
         android:ellipsize="end"
         android:singleLine="true"
         android:text="@string/title_artist"
-        android:textColor="@color/color_white"
+        android:textColor="@color/color_indigo_white"
         android:textSize="@dimen/sp_10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_title_playlist" />
