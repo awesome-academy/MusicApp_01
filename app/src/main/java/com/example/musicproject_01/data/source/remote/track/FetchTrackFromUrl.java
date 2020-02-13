@@ -1,4 +1,4 @@
-package com.example.musicproject_01.data.source.remote;
+package com.example.musicproject_01.data.source.remote.track;
 
 import android.os.AsyncTask;
 
@@ -23,10 +23,10 @@ import java.util.List;
 
 public class FetchTrackFromUrl extends AsyncTask<String, Void, List<Track>> {
 
-    private TrackDataSource.OnFetchDataListener<Track> mListener;
+    private TrackDataSource.OnFetchTrackDataListener mListener;
     private Exception mException;
 
-    public void setListener(TrackDataSource.OnFetchDataListener<Track> listener) {
+    public FetchTrackFromUrl(TrackDataSource.OnFetchTrackDataListener listener) {
         mListener = listener;
     }
 
@@ -49,9 +49,9 @@ public class FetchTrackFromUrl extends AsyncTask<String, Void, List<Track>> {
             return;
         }
         if (mException == null) {
-            mListener.onFetchDataSuccess(tracks);
+            mListener.onFetchTrackSuccess(tracks);
         } else {
-            mListener.onFetchDataFailure(mException);
+            mListener.onFetchTrackFailure(mException);
         }
     }
 

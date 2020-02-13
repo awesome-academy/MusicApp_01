@@ -6,10 +6,14 @@ import java.util.List;
 
 public interface TrackDataSource {
 
-    interface OnFetchDataListener<T> {
-        void onFetchDataSuccess(List<T> data);
+    interface OnFetchTrackDataListener {
+        void onFetchTrackSuccess(List<Track> data);
 
-        void onFetchDataFailure(Exception e);
+        void onFetchTrackFailure(Exception e);
+    }
+
+    interface RemoteDataSource {
+        void getTrackList (OnFetchTrackDataListener listener);
     }
 
     interface Local {
