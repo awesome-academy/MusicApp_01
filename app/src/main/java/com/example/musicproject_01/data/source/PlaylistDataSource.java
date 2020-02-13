@@ -5,10 +5,14 @@ import com.example.musicproject_01.data.model.Playlist;
 import java.util.List;
 
 public interface PlaylistDataSource {
-    interface OnFetchDataListener<T> {
-        void onFetchDataPlaylistSuccess(List<T> data);
+    interface OnFetchPlaylistDataListener {
+        void onFetchPlaylistSuccess(List<Playlist> data);
 
         void onFetchDataPlaylistFailure(Exception e);
+    }
+
+    interface RemoteDataSource {
+        void getPlaylist(OnFetchPlaylistDataListener listener);
     }
 
     interface Local {
