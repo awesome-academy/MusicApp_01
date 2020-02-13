@@ -1,4 +1,4 @@
-package com.example.musicproject_01.data.source.remote;
+package com.example.musicproject_01.data.source.remote.playlist;
 
 import android.os.AsyncTask;
 
@@ -25,10 +25,10 @@ import java.util.List;
 
 public class FetchPlaylistFromUrl extends AsyncTask<String, Void, List<Playlist>> {
 
-    private PlaylistDataSource.OnFetchDataListener<Playlist> mListener;
+    private PlaylistDataSource.OnFetchPlaylistDataListener mListener;
     private Exception mException;
 
-    public void setListener(PlaylistDataSource.OnFetchDataListener<Playlist> listener) {
+    public FetchPlaylistFromUrl(PlaylistDataSource.OnFetchPlaylistDataListener listener) {
         mListener = listener;
     }
 
@@ -148,7 +148,7 @@ public class FetchPlaylistFromUrl extends AsyncTask<String, Void, List<Playlist>
         }
 
         if (mException == null) {
-            mListener.onFetchDataPlaylistSuccess(playlistList);
+            mListener.onFetchPlaylistSuccess(playlistList);
         } else {
             mListener.onFetchDataPlaylistFailure(mException);
         }

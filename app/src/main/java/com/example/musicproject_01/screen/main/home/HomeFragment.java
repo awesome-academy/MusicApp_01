@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.musicproject_01.R;
 import com.example.musicproject_01.data.model.GenreAdapter;
+import com.example.musicproject_01.data.model.Playlist;
 import com.example.musicproject_01.data.model.PlaylistAdapter;
 import com.example.musicproject_01.data.model.Track;
 import com.example.musicproject_01.data.model.TrackAdapter;
@@ -40,6 +41,8 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         mHomePresenter = new HomePresenter(this);
         mHomePresenter.getTrackList();
         mRecyclerSong = view.findViewById(R.id.recycler_all_song);
+        mHomePresenter.getPlaylist();
+        mRecyclerPlaylist = view.findViewById(R.id.recycler_playlist);
 
         return view;
     }
@@ -53,6 +56,20 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
     @Override
     public void onGetTrackFailure(String message) {
-        Toast.makeText(getContext(), "ERROR Track", Toast.LENGTH_SHORT).show();
+        String error = getString(R.string.error_track_exception);
+        Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onGetPlaylistSuccess(List<Playlist> playlist) {
+        mPlaylistAdapter = new PlaylistAdapter(playlist);
+        mRecyclerPlaylist.setAdapter(mPlaylistAdapter);
+        mPlaylistAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onGetPlaylistFailure(String message) {
+        String error = getString(R.string.error_playlist_exception);
+        Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
     }
 }
