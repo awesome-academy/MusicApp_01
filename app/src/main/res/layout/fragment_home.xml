@@ -28,12 +28,12 @@
                 android:layout_marginTop="@dimen/dp_4"
                 android:layout_weight="8"
                 android:gravity="center_vertical"
-                android:text="@string/recent_song"
+                android:text="@string/all_song"
                 android:textColor="@color/color_white"
                 android:textSize="@dimen/sp_14" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_recent_song"
+                android:id="@+id/recycler_all_song"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/dp_4"
