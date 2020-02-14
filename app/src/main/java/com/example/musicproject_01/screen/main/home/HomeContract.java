@@ -1,5 +1,6 @@
 package com.example.musicproject_01.screen.main.home;
 
+import com.example.musicproject_01.data.model.Genre;
 import com.example.musicproject_01.data.model.Playlist;
 import com.example.musicproject_01.data.model.Track;
 
@@ -17,6 +18,8 @@ public interface HomeContract {
 
         void onGetPlaylistFailure(String message);
 
+        void showGenres(List<Genre> genres);
+
     }
 
     interface Presenter {
@@ -25,6 +28,7 @@ public interface HomeContract {
 
         void getPlaylist();
 
+        void loadGenres();
     }
 
 }

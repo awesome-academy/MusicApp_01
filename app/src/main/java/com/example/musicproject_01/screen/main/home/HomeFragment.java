@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.musicproject_01.R;
+import com.example.musicproject_01.data.model.Genre;
 import com.example.musicproject_01.data.model.GenreAdapter;
 import com.example.musicproject_01.data.model.Playlist;
 import com.example.musicproject_01.data.model.PlaylistAdapter;
@@ -43,6 +44,8 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         mRecyclerSong = view.findViewById(R.id.recycler_all_song);
         mHomePresenter.getPlaylist();
         mRecyclerPlaylist = view.findViewById(R.id.recycler_playlist);
+        mRecyclerGenre = view.findViewById(R.id.recycler_genres);
+        mHomePresenter.loadGenres();
 
         return view;
     }
@@ -71,5 +74,12 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     public void onGetPlaylistFailure(String message) {
         String error = getString(R.string.error_playlist_exception);
         Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showGenres(List<Genre> genres) {
+        mGenreAdapter = new GenreAdapter(genres);
+        mRecyclerGenre.setAdapter(mGenreAdapter);
+        mGenreAdapter.notifyDataSetChanged();
     }
 }

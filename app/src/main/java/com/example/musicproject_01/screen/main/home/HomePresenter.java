@@ -1,11 +1,14 @@
 package com.example.musicproject_01.screen.main.home;
 
+import com.example.musicproject_01.data.model.Genre;
 import com.example.musicproject_01.data.model.Playlist;
 import com.example.musicproject_01.data.model.Track;
+import com.example.musicproject_01.data.repository.GenreRepository;
 import com.example.musicproject_01.data.repository.PlaylistRepository;
 import com.example.musicproject_01.data.repository.TrackRepository;
 import com.example.musicproject_01.data.source.PlaylistDataSource;
 import com.example.musicproject_01.data.source.TrackDataSource;
+import com.example.musicproject_01.data.source.local.LocalGenreDataSource;
 
 import java.util.List;
 
@@ -16,11 +19,13 @@ public class HomePresenter implements HomeContract.Presenter,
     private HomeContract.View mView;
     private TrackRepository mTrackRepository;
     private PlaylistRepository mPlaylistRepository;
+    private GenreRepository mGenreRepository;
 
     public HomePresenter(HomeContract.View view) {
         mView = view;
         mTrackRepository = TrackRepository.getInstance();
         mPlaylistRepository = PlaylistRepository.getInstance();
+        mGenreRepository = GenreRepository.getInstance(new LocalGenreDataSource());
     }
 
     @Override
@@ -31,6 +36,12 @@ public class HomePresenter implements HomeContract.Presenter,
     @Override
     public void getPlaylist() {
         mPlaylistRepository.getPlaylist(this);
+    }
+
+    @Override
+    public void loadGenres() {
+        List<Genre> genres = mGenreRepository.getGenres();
+        mView.showGenres(genres);
     }
 
     @Override
