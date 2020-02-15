@@ -22,4 +22,5 @@
 
     <string name="error_track_exception">ERROR Track</string>
     <string name="error_playlist_exception">ERROR Playlist</string>
+    <string name="error_user_exception">ERROR User</string>
 </resources>

@@ -54,5 +54,7 @@
     <dimen name="dp_160">160dp</dimen>
     <dimen name="dp_180">180dp</dimen>
     <dimen name="sp_11">11sp</dimen>
+    <dimen name="dp_158">158dp</dimen>
+    <dimen name="dp_92">92dp</dimen>
 
 </resources>
