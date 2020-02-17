@@ -18,6 +18,8 @@ import com.example.musicproject_01.data.model.Playlist;
 import com.example.musicproject_01.data.model.PlaylistAdapter;
 import com.example.musicproject_01.data.model.Track;
 import com.example.musicproject_01.data.model.TrackAdapter;
+import com.example.musicproject_01.data.model.User;
+import com.example.musicproject_01.data.model.UserAdapter;
 
 import java.util.List;
 
@@ -28,10 +30,12 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     private RecyclerView mRecyclerSong;
     private RecyclerView mRecyclerPlaylist;
     private RecyclerView mRecyclerGenre;
+    private RecyclerView mRecyclerUser;
 
     private TrackAdapter mTrackAdapter;
     private PlaylistAdapter mPlaylistAdapter;
     private GenreAdapter mGenreAdapter;
+    private UserAdapter mUserAdapter;
 
     @Nullable
     @Override
@@ -46,6 +50,8 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         mRecyclerPlaylist = view.findViewById(R.id.recycler_playlist);
         mRecyclerGenre = view.findViewById(R.id.recycler_genres);
         mHomePresenter.loadGenres();
+        mHomePresenter.getUser();
+        mRecyclerUser = view.findViewById(R.id.recycler_user);
 
         return view;
     }
@@ -81,5 +87,18 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         mGenreAdapter = new GenreAdapter(genres);
         mRecyclerGenre.setAdapter(mGenreAdapter);
         mGenreAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onGetUserSuccess(List<User> users) {
+        mUserAdapter = new UserAdapter(users);
+        mRecyclerUser.setAdapter(mUserAdapter);
+        mUserAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onGetUserFail(String message) {
+        String error = getString(R.string.error_user_exception);
+        Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
     }
 }

@@ -3,6 +3,7 @@ package com.example.musicproject_01.screen.main.home;
 import com.example.musicproject_01.data.model.Genre;
 import com.example.musicproject_01.data.model.Playlist;
 import com.example.musicproject_01.data.model.Track;
+import com.example.musicproject_01.data.model.User;
 
 import java.util.List;
 
@@ -20,6 +21,10 @@ public interface HomeContract {
 
         void showGenres(List<Genre> genres);
 
+        void onGetUserSuccess(List<User> users);
+
+        void onGetUserFail(String message);
+
     }
 
     interface Presenter {
@@ -29,6 +34,8 @@ public interface HomeContract {
         void getPlaylist();
 
         void loadGenres();
+
+        void getUser();
     }
 
 }

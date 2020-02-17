@@ -4,15 +4,23 @@ public class User {
     private String mName;
     private String mAvatarUrl;
     private String mId;
+    private String mUserLink;
 
     public User() {
 
     }
 
-    public User(String name, String avatarUrl, String id) {
+    public User(String name, String avatarUrl, String userLink) {
+        mName = name;
+        mAvatarUrl = avatarUrl;
+        mUserLink = userLink;
+    }
+
+    public User(String name, String avatarUrl, String id, String userLink) {
         mName = name;
         mAvatarUrl = avatarUrl;
         mId = id;
+        mUserLink = userLink;
     }
 
     public String getName() {
@@ -37,5 +45,13 @@ public class User {
 
     public void setId(String id) {
         mId = id;
+    }
+
+    public String getUserLink() {
+        return mUserLink;
+    }
+
+    public void setUserLink(String userLink) {
+        mUserLink = userLink;
     }
 }
